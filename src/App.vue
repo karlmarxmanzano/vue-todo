@@ -1,32 +1,56 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<v-app>
+		<Navbar />
+		<v-content>
+			<v-container>
+				<router-view></router-view>
+			</v-container>
+		</v-content>
+		<!-- <v-footer
+		color="indigo"
+		app
+		>
+		<span class="white--text">&copy; 2019</span>
+		</v-footer> -->
+
+		<v-footer
+			padless
+		>
+			<v-row
+				justify="center"
+				no-gutters
+			>
+				<v-btn
+					v-for="link in links"
+					:key="link"
+					text
+					rounded
+					class="my-2"
+				>
+					{{ link }}
+				</v-btn>
+				<v-col
+					class="py-4 text-uppercase text-center"
+					cols="12"
+				>
+					{{ new Date().getFullYear() }} — <span class="font-weight-light">Vue</span>Todo
+				</v-col>
+			</v-row>
+		</v-footer>
+	</v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
 
-#nav {
-  padding: 30px;
-}
+	import Navbar from '@/components/Navbar'
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+	export default {
+		name: 'App',
+		data: () => ({
+			links: ['home', 'about us', 'team', 'services', 'blog', 'contact us']
+		}),
+		components: {
+			Navbar
+		}
+	};
+</script>
