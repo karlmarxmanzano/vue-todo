@@ -16,7 +16,7 @@
 						three-line
 					>
 						<v-list-item-content>
-							<v-list-item-headline>{{ person.name }}</v-list-item-headline>
+							<v-list-item-title>{{ person.name }}</v-list-item-title>
 							<v-list-item-subtitle>{{ person.role }}</v-list-item-subtitle>
 						</v-list-item-content>
 						<v-list-item-avatar
