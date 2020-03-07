@@ -10,12 +10,18 @@
             <template 
                 v-slot:activator="{ on }"
             >
-                <v-btn 
-                    color="primary" 
-                    dark 
-                    v-on="on" 
-                    class="lighten-1"
-                >Add New Project</v-btn>
+                <v-btn
+						fixed
+						dark
+						fab
+						bottom
+						float
+						right
+						color="pink"
+                        v-on="on"
+					>
+						<v-icon>mdi-plus</v-icon>
+					</v-btn>
             </template>
             <v-card>
                 <v-card-title>

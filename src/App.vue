@@ -4,6 +4,7 @@
 		<v-content>
 			<v-container>
 				<router-view></router-view>
+				<Popup />
 			</v-container>
 		</v-content>
 		<!-- <v-footer
@@ -12,8 +13,7 @@
 		>
 		<span class="white--text">&copy; 2019</span>
 		</v-footer> -->
-
-		<v-footer
+		<!-- <v-footer
 			padless
 		>
 			<v-row
@@ -36,13 +36,14 @@
 					{{ new Date().getFullYear() }} — <span class="font-weight-light">Vue</span>Todo
 				</v-col>
 			</v-row>
-		</v-footer>
+		</v-footer> -->
 	</v-app>
 </template>
 
 <script>
 
 	import Navbar from '@/components/Navbar'
+	import Popup from '@/components/Popup'
 
 	export default {
 		name: 'App',
@@ -50,7 +51,8 @@
 			links: ['home', 'about us', 'team', 'services', 'blog', 'contact us']
 		}),
 		components: {
-			Navbar
+			Navbar,
+			Popup
 		}
 	};
 </script>

@@ -19,10 +19,6 @@
 
                 <v-divider></v-divider>
 
-                <v-list-item>
-                    <Popup />
-                </v-list-item>
-
                 <v-list-item-group>
                     <v-list-item 
                         v-for="(link, index) in links" 
@@ -77,7 +73,6 @@
 </template>
 
 <script>
-    import Popup from './Popup'
     export default {
         data() {
             return {
@@ -102,7 +97,7 @@
             }
         },
         components: {
-            Popup
+            
         }
     }
 </script>
