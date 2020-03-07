@@ -19,6 +19,10 @@
 
                 <v-divider></v-divider>
 
+                <v-list-item>
+                    <Popup />
+                </v-list-item>
+
                 <v-list-item-group>
                     <v-list-item 
                         v-for="(link, index) in links" 
@@ -49,6 +53,22 @@
             
             <v-spacer></v-spacer>
 
+            <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                    <v-btn
+                        text
+                        v-on="on"
+                    >
+                        Dropdown
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-title>Menu 1</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+                </v-menu>
+
             <v-btn icon>
                 <v-icon>exit_to_app</v-icon>
             </v-btn>
@@ -57,28 +77,32 @@
 </template>
 
 <script>
-export default {
-    data() {
-        return {
-            drawer: true,
-            links: [
-                {
-                    'icon': 'dashboard',
-                    'text': 'Dashboard',
-                    'route': '/'
-                },
-                {
-                    'icon': 'folder',
-                    'text': 'My Projects',
-                    'route': '/projects'
-                },
-                {
-                    'icon': 'person',
-                    'text': 'Team',
-                    'route': '/team'
-                },
-            ]
+    import Popup from './Popup'
+    export default {
+        data() {
+            return {
+                drawer: true,
+                links: [
+                    {
+                        'icon': 'dashboard',
+                        'text': 'Dashboard',
+                        'route': '/'
+                    },
+                    {
+                        'icon': 'folder',
+                        'text': 'My Projects',
+                        'route': '/projects'
+                    },
+                    {
+                        'icon': 'person',
+                        'text': 'Team',
+                        'route': '/team'
+                    },
+                ]
+            }
+        },
+        components: {
+            Popup
         }
     }
-}
 </script>
