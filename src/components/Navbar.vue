@@ -1,5 +1,43 @@
 <template>
     <v-card>
+        <Snackbar 
+            :text="text" 
+            :showSnackbar="showSnackbar" 
+        ></Snackbar>
+
+        <v-app-bar
+            app
+            flat
+        >
+            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
+            <v-toolbar-title class="text-uppercase">
+                <span class="font-weight-light">Vue</span>
+                <span>Todo</span>
+            </v-toolbar-title>
+            
+            <v-spacer></v-spacer>
+
+            <!-- <v-menu offset-y>
+                <template v-slot:activator="{ on }">
+                    <v-btn
+                        text
+                        v-on="on"
+                    >
+                        Dropdown
+                    </v-btn>
+                </template>
+                <v-list>
+                    <v-list-item>
+                        <v-list-item-title>Menu 1</v-list-item-title>
+                    </v-list-item>
+                </v-list>
+            </v-menu> -->
+
+            <v-btn icon>
+                <v-icon>exit_to_app</v-icon>
+            </v-btn>
+        </v-app-bar>
+
         <v-navigation-drawer
             v-model="drawer"
             class="primary"
@@ -37,43 +75,17 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar
-            app
-            flat
-        >
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-            <v-toolbar-title class="text-uppercase">
-                <span class="font-weight-light">Vue</span>
-                <span>Todo</span>
-            </v-toolbar-title>
-            
-            <v-spacer></v-spacer>
-
-            <v-menu offset-y>
-                <template v-slot:activator="{ on }">
-                    <v-btn
-                        text
-                        v-on="on"
-                    >
-                        Dropdown
-                    </v-btn>
-                </template>
-                <v-list>
-                    <v-list-item>
-                        <v-list-item-title>Menu 1</v-list-item-title>
-                    </v-list-item>
-                </v-list>
-                </v-menu>
-
-            <v-btn icon>
-                <v-icon>exit_to_app</v-icon>
-            </v-btn>
-        </v-app-bar>
+        
     </v-card>
 </template>
 
 <script>
+    import Snackbar from './Snackbar'
+
     export default {
+        props: {
+            showSnackbar: Boolean
+        },
         data() {
             return {
                 drawer: true,
@@ -93,11 +105,12 @@
                         'text': 'Team',
                         'route': '/team'
                     },
-                ]
+                ],
+                text: ''
             }
         },
         components: {
-            
+            Snackbar
         }
     }
 </script>

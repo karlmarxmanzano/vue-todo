@@ -1,10 +1,10 @@
 <template>
 	<v-app>
-		<Navbar />
+		<Navbar :showSnackbar="showSnackbar" />
 		<v-content>
 			<v-container>
 				<router-view></router-view>
-				<Popup />
+				<Popup @projectAdded="showSnackbar = $event" />
 			</v-container>
 		</v-content>
 		<!-- <v-footer
@@ -41,14 +41,15 @@
 </template>
 
 <script>
-
 	import Navbar from '@/components/Navbar'
 	import Popup from '@/components/Popup'
 
 	export default {
 		name: 'App',
 		data: () => ({
-			links: ['home', 'about us', 'team', 'services', 'blog', 'contact us']
+			links: ['home', 'about us', 'team', 'services', 'blog', 'contact us'],
+			projectEvent: false,
+			showSnackbar: false
 		}),
 		components: {
 			Navbar,

@@ -6,9 +6,9 @@
 				class="pa-3"
 			>
 				<v-row>
-					<v-btn text @click="sortBy('name')">
+					<v-btn text @click="sortBy('title')">
 						<v-icon left>folder</v-icon>
-						<span caption>Sort by Project Name</span>
+						<span caption>Sort by Project Title</span>
 					</v-btn>
 					<v-btn text @click="sortBy('person')">
 						<v-icon left>person</v-icon>
@@ -28,7 +28,7 @@
 				<v-row>
 					<v-col sm="12" md="6">
 						<div class="caption">Project Title</div>
-						<div>{{ project.name }}</div>
+						<div>{{ project.title }}</div>
 					</v-col>
 					<v-col sm="4" md="2">
 						<div class="caption">Person</div>
@@ -120,43 +120,36 @@
 </template>
 
 <script>
-export default {
-	data () {
-		return {
-			projects: [
-				{
-					name: 'First Project',
-					person: 'Karl Marx Manzano',
-					dueDate: '1st Jan, 2021',
-					status: 'done'
-				},
-				{
-					name: 'Second Project',
-					person: 'Karl Marx Manzano',
-					dueDate: '1st Feb, 2021',
-					status: 'ongoing'
-				},
-				{
-					name: 'Third Project',
-					person: 'Jemimah Manzano',
-					dueDate: '1st Mar, 2021',
-					status: 'pending'
-				},
-				{
-					name: 'Fourth Project',
-					person: 'Caleb Manzano',
-					dueDate: '1st Apr, 2021',
-					status: 'pending'
-				},
-			]
-		}
-	},
-	methods: {
-		sortBy (prop) {
-			this.projects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
+	import db from '@/firebase'
+
+	export default {
+		data () {
+			return {
+				projects: []
+			}
+		},
+		methods: {
+			sortBy (prop) {
+				this.projects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
+			}
+		},
+		created () {
+			db.collection('projects')
+				.onSnapshot(res => {
+					const changes = res.docChanges()
+
+					changes.forEach(change => {
+						if (change.type === 'added') {
+							this.projects.push({
+								...change.doc.data(),
+								id: change.doc.id
+							})
+						}
+					});
+				})
+				
 		}
 	}
-}
 </script>
 
 <style scoped>
@@ -170,3 +163,4 @@ export default {
 		background: orange !important;
 	}
 </style>
+

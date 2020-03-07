@@ -29,7 +29,7 @@
                 </v-card-title>
                 <v-card-text>
                     <v-container>
-                        <v-form>
+                        <v-form ref="form">
                             <v-row>
                                 <v-col 
                                     cols="12"
@@ -82,9 +82,16 @@
                     <small>*indicates required field</small>
                 </v-card-text>
                 <v-card-actions>
-                    <v-spacer></v-spacer>
-                    <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-                    <v-btn color="blue darken-1" text @click="onSubmit">Save</v-btn>
+                    <v-container>
+                        <v-spacer></v-spacer>
+                        <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
+                        <v-btn
+                            :loading="loading"
+                            :disabled="loading"
+                            color="primary"
+                            @click="onSubmit"
+                        >Save</v-btn>
+                    </v-container>
                 </v-card-actions>
             </v-card>
         </v-dialog>
@@ -92,12 +99,14 @@
 </template>
 
 <script>
+    import db from '@/firebase'
     import moment from 'moment'
-
+    
     export default {
         data () {
             return {
                 dialog: false,
+                loading: false,
                 formData: {
                     title: '',
                     content: '',
@@ -116,7 +125,29 @@
         },
         methods: {
             onSubmit () {
-                console.log(this.formData);
+                if (this.$refs.form.validate()) {
+
+                    const projectData = {
+                        title: this.formData.title,
+                        content: this.formData.content,
+                        dueDate: this.dateFormatted,
+                        person: 'Karl Marx Manzano',
+                        status: 'new'
+                    }
+
+                    this.loading = true
+
+                    db.collection('projects')
+                        .add(projectData)
+                        .then(() => {
+                            this.loading = false
+                            this.dialog = false
+                            this.$emit('projectAdded', true)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                }
             }
         }
     }
