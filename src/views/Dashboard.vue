@@ -125,28 +125,28 @@ export default {
 		return {
 			projects: [
 				{
-					'name': 'First Project',
-					'person': 'Karl Marx Manzano',
-					'dueDate': '1st Jan, 2021',
-					'status': 'done'
+					name: 'First Project',
+					person: 'Karl Marx Manzano',
+					dueDate: '1st Jan, 2021',
+					status: 'done'
 				},
 				{
-					'name': 'Second Project',
-					'person': 'Karl Marx Manzano',
-					'dueDate': '1st Feb, 2021',
-					'status': 'ongoing'
+					name: 'Second Project',
+					person: 'Karl Marx Manzano',
+					dueDate: '1st Feb, 2021',
+					status: 'ongoing'
 				},
 				{
-					'name': 'Third Project',
-					'person': 'Jemimah Manzano',
-					'dueDate': '1st Mar, 2021',
-					'status': 'pending'
+					name: 'Third Project',
+					person: 'Jemimah Manzano',
+					dueDate: '1st Mar, 2021',
+					status: 'pending'
 				},
 				{
-					'name': 'Fourth Project',
-					'person': 'Caleb Manzano',
-					'dueDate': '1st Apr, 2021',
-					'status': 'pending'
+					name: 'Fourth Project',
+					person: 'Caleb Manzano',
+					dueDate: '1st Apr, 2021',
+					status: 'pending'
 				},
 			]
 		}
